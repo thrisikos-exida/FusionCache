@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>netstandard2.0;net8.0;net9.0</TargetFrameworks>
+		<TargetFrameworks>netstandard2.0;net8.0</TargetFrameworks>
 		<Version>2.4.0</Version>
 		<PackageId>ZiggyCreatures.FusionCache.Backplane.StackExchangeRedis</PackageId>
 		<Description>FusionCache backplane for Redis based on the StackExchange.Redis library</Description>
