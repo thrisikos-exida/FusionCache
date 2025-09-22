@@ -19,11 +19,6 @@ public class AzureQueueTableBackplaneOptions
 	public string QueueName { get; set; } = "fusioncache-backplane";
 
 	/// <summary>
-	/// The name of the Azure Table to use for coordination.
-	/// </summary>
-	public string TableName { get; set; } = "fusioncachebackplane";
-
-	/// <summary>
 	/// The interval at which to poll the queue for new messages.
 	/// </summary>
 	public TimeSpan PollingInterval { get; set; } = TimeSpan.FromMilliseconds(1000);

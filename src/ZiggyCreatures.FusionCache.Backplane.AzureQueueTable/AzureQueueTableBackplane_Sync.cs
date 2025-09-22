@@ -9,26 +9,21 @@ public partial class AzureQueueTableBackplane
 	{
 		token.ThrowIfCancellationRequested();
 
-		if (_queueClient is not null && _tableClient is not null)
+		if (_queueClient is not null)
 			return;
 
 		_connectionLock.Wait(token);
 		try
 		{
-			if (_queueClient is not null && _tableClient is not null)
+			if (_queueClient is not null)
 				return;
 
 			EnsureClients();
 
-			// Create queue and table if they don't exist
+			// Create queue if it doesn't exist
 			if (_queueClient is not null)
 			{
 				_queueClient.CreateIfNotExists(cancellationToken: token);
-			}
-
-			if (_tableClient is not null)
-			{
-				_tableClient.CreateIfNotExists(token);
 			}
 
 			// Notify connection established
@@ -45,9 +40,6 @@ public partial class AzureQueueTableBackplane
 
 		if (_queueClient is null)
 			throw new NullReferenceException("A connection to Azure Storage Queue is not available");
-
-		if (_tableClient is null)
-			throw new NullReferenceException("A connection to Azure Storage Table is not available");
 	}
 
 	/// <inheritdoc/>

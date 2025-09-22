@@ -1,5 +1,4 @@
 ﻿using Azure;
-using Azure.Data.Tables;
 using Azure.Storage.Queues;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
@@ -10,7 +9,7 @@ using System.Text.Json;
 namespace ZiggyCreatures.Caching.Fusion.Backplane.AzureQueueTable;
 
 /// <summary>
-/// An Azure Storage Queue and Table based implementation of a FusionCache backplane.
+/// An Azure Storage Queue based implementation of a FusionCache backplane.
 /// </summary>
 public partial class AzureQueueTableBackplane
 	: IFusionCacheBackplane
@@ -21,7 +20,6 @@ public partial class AzureQueueTableBackplane
 
 	private readonly SemaphoreSlim _connectionLock;
 	private QueueClient? _queueClient;
-	private TableClient? _tableClient;
 
 	private string? _channelName = null;
 	private CancellationTokenSource? _pollingCancellationTokenSource;
@@ -76,9 +74,6 @@ public partial class AzureQueueTableBackplane
 
 		if (string.IsNullOrWhiteSpace(_options.QueueName))
 			throw new InvalidOperationException("QueueName cannot be null or empty");
-
-		if (string.IsNullOrWhiteSpace(_options.TableName))
-			throw new InvalidOperationException("TableName cannot be null or empty");
 	}
 
 	private void EnsureClients()
@@ -88,11 +83,6 @@ public partial class AzureQueueTableBackplane
 		if (_queueClient is null)
 		{
 			_queueClient = new QueueClient(_options.ConnectionString, _options.QueueName);
-		}
-
-		if (_tableClient is null)
-		{
-			_tableClient = new TableClient(_options.ConnectionString, _options.TableName);
 		}
 	}
 
@@ -104,7 +94,6 @@ public partial class AzureQueueTableBackplane
 		StopPolling();
 
 		_queueClient = null;
-		_tableClient = null;
 	}
 
 	private void StartPolling()

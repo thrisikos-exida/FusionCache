@@ -1,6 +1,6 @@
 # 📢 FusionCache Backplane - Azure Queue + Table
 
-This package implements a FusionCache backplane using Azure Storage Queues and Tables.
+This package implements a FusionCache backplane using Azure Storage Queues.
 
 ## 🚀 Quick Start
 
@@ -29,13 +29,12 @@ services.AddFusionCache()
 
 ## ⚙️ Configuration
 
-The backplane uses Azure Storage Queues for message distribution and Azure Tables for coordination.
+The backplane uses Azure Storage Queues for message distribution between cache nodes.
 
 | Option | Description | Default |
 |--------|-------------|---------|
 | `ConnectionString` | Azure Storage connection string | Required |
 | `QueueName` | Queue name for messages | `fusioncache-backplane` |
-| `TableName` | Table name for coordination | `fusioncachebackplane` |
 | `PollingInterval` | Queue polling interval | `1000ms` |
 | `MaxMessagesPerPoll` | Max messages per polling cycle | `32` |
 | `MessageVisibilityTimeout` | Message visibility timeout | `30s` |
@@ -45,8 +44,7 @@ The backplane uses Azure Storage Queues for message distribution and Azure Table
 
 - **Publishing**: Messages are sent to an Azure Storage Queue
 - **Subscribing**: Continuously polls the queue for new messages  
-- **Coordination**: Uses Azure Tables to track active subscribers
-- **Reliability**: Built-in retry and error handling
+- **Reliability**: Built-in retry and error handling with automatic message cleanup
 
 ## 📝 Full Example
 

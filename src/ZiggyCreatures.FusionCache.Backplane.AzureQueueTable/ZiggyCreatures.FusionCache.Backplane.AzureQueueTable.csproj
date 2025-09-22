@@ -25,7 +25,6 @@
 
 	<ItemGroup>
 		<PackageReference Include="Azure.Storage.Queues" Version="12.20.1" />
-		<PackageReference Include="Azure.Data.Tables" Version="12.9.1" />
 	</ItemGroup>
 
 </Project>
