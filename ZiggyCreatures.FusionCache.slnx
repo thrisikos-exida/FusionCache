@@ -8,6 +8,7 @@
   </Folder>
   <Folder Name="/src/">
     <Project Path="src/ZiggyCreatures.FusionCache.AspNetCore.OutputCaching/ZiggyCreatures.FusionCache.AspNetCore.OutputCaching.csproj" />
+    <Project Path="src/ZiggyCreatures.FusionCache.Backplane.AzureQueue/ZiggyCreatures.FusionCache.Backplane.AzureQueue.csproj" />
     <Project Path="src/ZiggyCreatures.FusionCache.Backplane.Memory/ZiggyCreatures.FusionCache.Backplane.Memory.csproj" />
     <Project Path="src/ZiggyCreatures.FusionCache.Backplane.StackExchangeRedis/ZiggyCreatures.FusionCache.Backplane.StackExchangeRedis.csproj" />
     <Project Path="src/ZiggyCreatures.FusionCache.Chaos/ZiggyCreatures.FusionCache.Chaos.csproj" />
