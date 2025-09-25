@@ -3,10 +3,10 @@
 	<PropertyGroup>
 		<TargetFrameworks>netstandard2.0;net8.0;net9.0</TargetFrameworks>
 		<Version>2.4.0</Version>
-		<PackageId>ZiggyCreatures.FusionCache.Backplane.AzureQueueTable</PackageId>
+		<PackageId>ZiggyCreatures.FusionCache.Backplane.AzureQueue</PackageId>
 		<Description>FusionCache backplane for Azure Storage Queues</Description>
 		<PackageTags>backplane;azure;storage;queue;caching;cache;hybrid;hybrid-cache;hybridcache;multi-level;multilevel;fusion;fusioncache;fusion-cache;performance;async;ziggy</PackageTags>
-		<RootNamespace>ZiggyCreatures.Caching.Fusion.Backplane.AzureQueueTable</RootNamespace>
+		<RootNamespace>ZiggyCreatures.Caching.Fusion.Backplane.AzureQueue</RootNamespace>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<PackageReleaseNotes>
 			- Initial release: Azure Storage Queue backplane implementation

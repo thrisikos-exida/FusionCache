@@ -5,5 +5,5 @@ public enum BackplaneType
 	None = 0,
 	Memory = 1,
 	Redis = 2,
-	AzureQueueTable = 3
+	AzureQueue = 3
 }

@@ -7,14 +7,14 @@ This package implements a FusionCache backplane using Azure Storage Queues.
 Install the package:
 
 ```PowerShell
-PM> Install-Package ZiggyCreatures.FusionCache.Backplane.AzureQueueTable
+PM> Install-Package ZiggyCreatures.FusionCache.Backplane.AzureQueue
 ```
 
 Configure and use:
 
 ```csharp
 // Manual setup
-var backplane = new AzureQueueTableBackplane(new AzureQueueTableBackplaneOptions() {
+var backplane = new AzureQueueBackplane(new AzureQueueBackplaneOptions() {
     ConnectionString = "UseDevelopmentStorage=true" // or your Azure Storage connection string
 });
 
@@ -51,14 +51,14 @@ The backplane uses Azure Storage Queues for message distribution between cache n
 ```csharp
 using Microsoft.Extensions.DependencyInjection;
 using ZiggyCreatures.Caching.Fusion;
-using ZiggyCreatures.Caching.Fusion.Backplane.AzureQueueTable;
+using ZiggyCreatures.Caching.Fusion.Backplane.AzureQueue;
 
 // Setup DI container
 var services = new ServiceCollection();
 
 // Add FusionCache with Azure backplane
 services.AddFusionCache()
-    .WithAzureQueueTableBackplane(options => {
+    .WithAzureQueueBackplane(options => {
         options.ConnectionString = "DefaultEndpointsProtocol=https;AccountName=myaccount;AccountKey=mykey";
         options.QueueName = "my-cache-backplane";
         options.PollingInterval = TimeSpan.FromSeconds(2);

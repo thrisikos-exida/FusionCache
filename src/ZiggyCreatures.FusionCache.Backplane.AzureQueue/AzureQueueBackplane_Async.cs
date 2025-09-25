@@ -1,9 +1,9 @@
 ﻿using Azure;
 using Microsoft.Extensions.Logging;
 
-namespace ZiggyCreatures.Caching.Fusion.Backplane.AzureQueueTable;
+namespace ZiggyCreatures.Caching.Fusion.Backplane.AzureQueue;
 
-public partial class AzureQueueTableBackplane
+public partial class AzureQueueBackplane
 {
 	private async ValueTask EnsureConnectionAsync(CancellationToken token = default)
 	{

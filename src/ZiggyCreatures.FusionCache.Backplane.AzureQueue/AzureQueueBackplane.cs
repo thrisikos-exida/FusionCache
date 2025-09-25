@@ -6,15 +6,15 @@ using Microsoft.Extensions.Options;
 using System.Text;
 using System.Text.Json;
 
-namespace ZiggyCreatures.Caching.Fusion.Backplane.AzureQueueTable;
+namespace ZiggyCreatures.Caching.Fusion.Backplane.AzureQueue;
 
 /// <summary>
 /// An Azure Storage Queue based implementation of a FusionCache backplane.
 /// </summary>
-public partial class AzureQueueTableBackplane
+public partial class AzureQueueBackplane
 	: IFusionCacheBackplane
 {
-	private readonly AzureQueueTableBackplaneOptions _options;
+	private readonly AzureQueueBackplaneOptions _options;
 	private BackplaneSubscriptionOptions? _subscriptionOptions;
 	private readonly ILogger? _logger;
 
@@ -31,11 +31,11 @@ public partial class AzureQueueTableBackplane
 	private Func<BackplaneMessage, ValueTask>? _incomingMessageHandlerAsync;
 
 	/// <summary>
-	/// Initializes a new instance of the AzureQueueTableBackplane class.
+	/// Initializes a new instance of the AzureQueueBackplane class.
 	/// </summary>
 	/// <param name="optionsAccessor">The set of options to use with this instance of the backplane.</param>
 	/// <param name="logger">The <see cref="ILogger{TCategoryName}"/> instance to use. If null, logging will be completely disabled.</param>
-	public AzureQueueTableBackplane(IOptions<AzureQueueTableBackplaneOptions> optionsAccessor, ILogger<AzureQueueTableBackplane>? logger = null)
+	public AzureQueueBackplane(IOptions<AzureQueueBackplaneOptions> optionsAccessor, ILogger<AzureQueueBackplane>? logger = null)
 	{
 		if (optionsAccessor is null)
 			throw new ArgumentNullException(nameof(optionsAccessor));
@@ -44,7 +44,7 @@ public partial class AzureQueueTableBackplane
 		_options = optionsAccessor.Value ?? throw new ArgumentNullException(nameof(optionsAccessor.Value));
 
 		// LOGGING
-		if (logger is NullLogger<AzureQueueTableBackplane>)
+		if (logger is NullLogger<AzureQueueBackplane>)
 		{
 			// IGNORE NULL LOGGER (FOR BETTER PERF)
 			_logger = null;
@@ -62,7 +62,7 @@ public partial class AzureQueueTableBackplane
 	/// </summary>
 	/// <param name="options">The options to use with this instance of the backplane.</param>
 	/// <param name="logger">The <see cref="ILogger{TCategoryName}"/> instance to use. If null, logging will be completely disabled.</param>
-	public AzureQueueTableBackplane(AzureQueueTableBackplaneOptions options, ILogger<AzureQueueTableBackplane>? logger = null)
+	public AzureQueueBackplane(AzureQueueBackplaneOptions options, ILogger<AzureQueueBackplane>? logger = null)
 		: this(Options.Create(options), logger)
 	{
 	}

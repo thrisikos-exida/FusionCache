@@ -3,22 +3,22 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using ZiggyCreatures.Caching.Fusion;
 using ZiggyCreatures.Caching.Fusion.Backplane;
-using ZiggyCreatures.Caching.Fusion.Backplane.AzureQueueTable;
+using ZiggyCreatures.Caching.Fusion.Backplane.AzureQueue;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
 /// <summary>
 /// Extension methods for setting up FusionCache related services in an <see cref="IServiceCollection" />.
 /// </summary>
-public static class AzureQueueTableBackplaneExtensions
+public static class AzureQueueBackplaneExtensions
 {
 	/// <summary>
 	/// Adds an Azure Queue based implementation of a backplane to the <see cref="IServiceCollection" />.
 	/// </summary>
 	/// <param name="services">The <see cref="IServiceCollection" /> to add services to.</param>
-	/// <param name="setupOptionsAction">The <see cref="Action{AzureQueueTableBackplaneOptions}"/> to configure the provided <see cref="AzureQueueTableBackplaneOptions"/>.</param>
+	/// <param name="setupOptionsAction">The <see cref="Action{AzureQueueBackplaneOptions}"/> to configure the provided <see cref="AzureQueueBackplaneOptions"/>.</param>
 	/// <returns>The <see cref="IServiceCollection"/> so that additional calls can be chained.</returns>
-	public static IServiceCollection AddFusionCacheAzureQueueTableBackplane(this IServiceCollection services, Action<AzureQueueTableBackplaneOptions>? setupOptionsAction = null)
+	public static IServiceCollection AddFusionCacheAzureQueueBackplane(this IServiceCollection services, Action<AzureQueueBackplaneOptions>? setupOptionsAction = null)
 	{
 		if (services is null)
 			throw new ArgumentNullException(nameof(services));
@@ -28,8 +28,8 @@ public static class AzureQueueTableBackplaneExtensions
 		if (setupOptionsAction is not null)
 			services.Configure(setupOptionsAction);
 
-		services.TryAddTransient<AzureQueueTableBackplane>();
-		services.TryAddTransient<IFusionCacheBackplane, AzureQueueTableBackplane>();
+		services.TryAddTransient<AzureQueueBackplane>();
+		services.TryAddTransient<IFusionCacheBackplane, AzureQueueBackplane>();
 
 		return services;
 	}
@@ -38,9 +38,9 @@ public static class AzureQueueTableBackplaneExtensions
 	/// Adds an Azure Queue based implementation of a backplane to the <see cref="IFusionCacheBuilder" />.
 	/// </summary>
 	/// <param name="builder">The <see cref="IFusionCacheBuilder" /> to add the backplane to.</param>
-	/// <param name="setupOptionsAction">The <see cref="Action{AzureQueueTableBackplaneOptions}"/> to configure the provided <see cref="AzureQueueTableBackplaneOptions"/>.</param>
+	/// <param name="setupOptionsAction">The <see cref="Action{AzureQueueBackplaneOptions}"/> to configure the provided <see cref="AzureQueueBackplaneOptions"/>.</param>
 	/// <returns>The <see cref="IFusionCacheBuilder"/> so that additional calls can be chained.</returns>
-	public static IFusionCacheBuilder WithAzureQueueTableBackplane(this IFusionCacheBuilder builder, Action<AzureQueueTableBackplaneOptions>? setupOptionsAction = null)
+	public static IFusionCacheBuilder WithAzureQueueBackplane(this IFusionCacheBuilder builder, Action<AzureQueueBackplaneOptions>? setupOptionsAction = null)
 	{
 		if (builder is null)
 			throw new ArgumentNullException(nameof(builder));
@@ -48,16 +48,16 @@ public static class AzureQueueTableBackplaneExtensions
 		return builder
 			.WithBackplane(sp =>
 			{
-				var options = sp.GetService<IOptionsMonitor<AzureQueueTableBackplaneOptions>>()?.Get(builder.CacheName);
+				var options = sp.GetService<IOptionsMonitor<AzureQueueBackplaneOptions>>()?.Get(builder.CacheName);
 
 				if (options is null)
-					throw new InvalidOperationException($"Unable to find a valid {nameof(AzureQueueTableBackplaneOptions)} instance for the current cache name '{builder.CacheName}'.");
+					throw new InvalidOperationException($"Unable to find a valid {nameof(AzureQueueBackplaneOptions)} instance for the current cache name '{builder.CacheName}'.");
 
 				setupOptionsAction?.Invoke(options);
 
-				var logger = sp.GetService<ILogger<AzureQueueTableBackplane>>();
+				var logger = sp.GetService<ILogger<AzureQueueBackplane>>();
 
-				return new AzureQueueTableBackplane(options, logger);
+				return new AzureQueueBackplane(options, logger);
 			})
 		;
 	}

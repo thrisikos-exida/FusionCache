@@ -1,12 +1,12 @@
 ﻿using Microsoft.Extensions.Options;
 
-namespace ZiggyCreatures.Caching.Fusion.Backplane.AzureQueueTable;
+namespace ZiggyCreatures.Caching.Fusion.Backplane.AzureQueue;
 
 /// <summary>
 /// Represents the options available for the Azure Queue backplane.
 /// </summary>
-public class AzureQueueTableBackplaneOptions
-	: IOptions<AzureQueueTableBackplaneOptions>
+public class AzureQueueBackplaneOptions
+	: IOptions<AzureQueueBackplaneOptions>
 {
 	/// <summary>
 	/// The connection string used to connect to Azure Storage.
@@ -38,7 +38,7 @@ public class AzureQueueTableBackplaneOptions
 	/// </summary>
 	public TimeSpan MessageVisibilityTimeout { get; set; } = TimeSpan.FromSeconds(30);
 
-	AzureQueueTableBackplaneOptions IOptions<AzureQueueTableBackplaneOptions>.Value
+	AzureQueueBackplaneOptions IOptions<AzureQueueBackplaneOptions>.Value
 	{
 		get { return this; }
 	}
