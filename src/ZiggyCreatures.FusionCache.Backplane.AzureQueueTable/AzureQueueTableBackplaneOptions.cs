@@ -3,7 +3,7 @@
 namespace ZiggyCreatures.Caching.Fusion.Backplane.AzureQueueTable;
 
 /// <summary>
-/// Represents the options available for the Azure Queue + Table backplane.
+/// Represents the options available for the Azure Queue backplane.
 /// </summary>
 public class AzureQueueTableBackplaneOptions
 	: IOptions<AzureQueueTableBackplaneOptions>

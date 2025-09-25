@@ -13,7 +13,7 @@ namespace Microsoft.Extensions.DependencyInjection;
 public static class AzureQueueTableBackplaneExtensions
 {
 	/// <summary>
-	/// Adds an Azure Queue + Table based implementation of a backplane to the <see cref="IServiceCollection" />.
+	/// Adds an Azure Queue based implementation of a backplane to the <see cref="IServiceCollection" />.
 	/// </summary>
 	/// <param name="services">The <see cref="IServiceCollection" /> to add services to.</param>
 	/// <param name="setupOptionsAction">The <see cref="Action{AzureQueueTableBackplaneOptions}"/> to configure the provided <see cref="AzureQueueTableBackplaneOptions"/>.</param>
@@ -35,7 +35,7 @@ public static class AzureQueueTableBackplaneExtensions
 	}
 
 	/// <summary>
-	/// Adds an Azure Queue + Table based implementation of a backplane to the <see cref="IFusionCacheBuilder" />.
+	/// Adds an Azure Queue based implementation of a backplane to the <see cref="IFusionCacheBuilder" />.
 	/// </summary>
 	/// <param name="builder">The <see cref="IFusionCacheBuilder" /> to add the backplane to.</param>
 	/// <param name="setupOptionsAction">The <see cref="Action{AzureQueueTableBackplaneOptions}"/> to configure the provided <see cref="AzureQueueTableBackplaneOptions"/>.</param>

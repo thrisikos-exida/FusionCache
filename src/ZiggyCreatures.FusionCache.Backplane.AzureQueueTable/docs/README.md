@@ -1,4 +1,4 @@
-# 📢 FusionCache Backplane - Azure Queue + Table
+# 📢 FusionCache Backplane - Azure Queue
 
 This package implements a FusionCache backplane using Azure Storage Queues.
 
